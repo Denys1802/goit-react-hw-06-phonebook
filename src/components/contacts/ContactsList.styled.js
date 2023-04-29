@@ -31,6 +31,11 @@ export const ContactsBtn = styled.button`
   }
 `;
 
+export const TitleList = styled.h2`
+  color: rgb(86, 101, 115);
+  font-size: 18px;
+`;
+
 // .list {
 //   margin-top: 30px;
 //   color: var(--secondaryTextColor);

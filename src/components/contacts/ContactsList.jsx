@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { List, Item, ContactsBtn } from './ContactsList.styled';
-import { getContacts, removeContacts } from 'redux/addContactsSlice';
+import { List, Item, ContactsBtn, TitleList } from './ContactsList.styled';
+import { getContacts, removeContacts } from 'redux/contactsSlice';
 import { getFilter } from 'redux/filterSlice';
 
 const Contacts = () => {
@@ -13,23 +13,45 @@ const Contacts = () => {
   const filterContacts = contacts.filter(contact =>
     contact.name?.toLowerCase().includes(filter.toLowerCase())
   );
-
-  return filterContacts.map(contact => (
-    <List key={contact.id}>
-      <Item>
-        <p>
-          {contact.name}: {contact.number}
-        </p>
-        <ContactsBtn
-          type="button"
-          onClick={() => deleteContact(contact.id)}
-          id={contact.id}
-        >
-          Delete
-        </ContactsBtn>
-      </Item>
-    </List>
-  ));
+  return filterContacts.length ? (
+    <>
+      <List>
+        {filterContacts.map(contact => (
+          <Item key={contact.id}>
+            <p>
+              {contact.name}: {contact.number}
+            </p>
+            <ContactsBtn
+              type="button"
+              onClick={() => deleteContact(contact.id)}
+              id={contact.id}
+            >
+              Delete
+            </ContactsBtn>
+          </Item>
+        ))}
+      </List>
+    </>
+  ) : (
+    <TitleList>Контактів немає</TitleList>
+  );
 };
 
 export default Contacts;
+
+// return filterContacts.map(contact => (
+//   <List key={contact.id}>
+//     <Item>
+//       <p>
+//         {contact.name}: {contact.number}
+//       </p>
+//       <ContactsBtn
+//         type="button"
+//         onClick={() => deleteContact(contact.id)}
+//         id={contact.id}
+//       >
+//         Delete
+//       </ContactsBtn>
+//     </Item>
+//   </List>
+// ));

@@ -1,6 +1,6 @@
 import { Form, Label, Input, Button } from './UserForm.styled';
 import { useState } from 'react';
-import { addContacts, getContacts } from 'redux/addContactsSlice';
+import { addContacts, getContacts } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UserForm = () => {
