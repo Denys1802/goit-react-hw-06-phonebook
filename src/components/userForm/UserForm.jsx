@@ -2,11 +2,14 @@ import { Form, Label, Input, Button } from './UserForm.styled';
 import { useState } from 'react';
 import { addContacts, getContacts } from 'redux/addContactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
 const UserForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+
   const handleChange = (value, name) => {
     switch (name) {
       case 'name':
@@ -21,7 +24,6 @@ const UserForm = () => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(contacts);
     if (
       [contacts].find(el => {
         return el.name === name;
@@ -34,13 +36,6 @@ const UserForm = () => {
 
     dispatch(addContacts(name, number));
 
-    //  const newContact = {
-    //    id: nanoid(),
-    //    name,
-    //    number,
-    //  };
-
-    //onSubmitForm(newContact);
     reset();
   };
 
